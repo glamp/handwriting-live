@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Paint by Number 2</title>
+    <script src="/javascripts/jquery.min.js"></script>
+    <style type="text/css"><!--
+      #container { position: relative; }
+      #imageView { border: 1px solid #000; }
+      #imageTemp { position: absolute; top: 1px; left: 1px; }
+    --></style>
+  </head>
+  <body>
+    <h2 id="number">Draw the number</h2>
+    <h2>Predictions Made: <span id="counter">0</span></h2>
+    <button id="send">Submit</button>
+    <button id="predict">Predict</button>
+    <button id="clear">Clear</button>
+
+    <div id="container">
+      <div>
+        <canvas id="imageView" width="500px;" height="500px;"></canvas>
+      </div>
+      <div>
+        <ul id="results">
+        </ul>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/javascripts/example5.js"></script>
+    <script type="text/javascript">
+      var canvas = document.getElementById('imageView');
+      var context = canvas.getContext('2d');
+      var n = Math.floor(Math.random() * 10);
+      $("#number").text("Draw the number: " + n);
+      $("#clear").click();
+      $("#send").click(function(e) {
+        var img = canvas.toDataURL().replace(/^data:image\/\w+;base64,/, "");
+        //$.post("/", {img: img, n: n}, function() {
+        //    window.location.replace("/");
+        //})
+        return false;
+      });
+
+      var ws = new WebSocket("ws://starphleet-aa02a554-1981699582.us-west-1.elb.amazonaws.com/models/digitRecognizer/");
+
+      var lastPred = "";
+      makePrediction = function() {
+        var img = canvas.toDataURL().replace(/^data:image\/\w+;base64,/, "");
+        if (img==lastPred) {
+          // do nothing
+        }
+        lastPred = img;
+        ws.send(JSON.stringify({image_string: img}));
+      };
+      
+      $("#predict").click(function(e) {
+          makePrediction();
+          return false;
+      })
+      ws.onmessage = function(evt) {
+        console.log(1);
+        var d = JSON.parse(evt.data);
+        $("#counter").text(parseInt($("#counter").text()) + 1);
+        $("#results").children().remove()
+//        $("#results").append("<pre>" + JSON.stringify(d, null, 2) + "</pre>")
+        for(i=0; i<10; i++) {
+          $("#results").append("<li>" + i + ": " + d.probs["prob_" + i] + "</li>");
+        }
+      };
+      $("#clear").click(function(e) {
+        context.fillStyle = 'white';
+        context.fillRect(0, 0, 500, 500);
+      });
+    </script>
+  </body>
+</html>
+
