@@ -14,3 +14,7 @@ results
 npm-debug.log
 node_modules
 numbers
+
+.DS_Store
+*.swp
+*.swo

@@ -1,0 +1,80 @@
+.canvas-holder {
+    position:relative;
+    .clearfix;
+    display:block;
+    height:502px;
+    width:502px;
+    border:1px solid #ededed;
+    margin:10px auto;
+
+    canvas {
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+    }
+}
+
+button {
+    position:relative;
+    margin:0 auto 50px auto;
+    display:block;
+    .border-radius(58px);
+    border:2px solid @link-color;
+    text-transform:uppercase;
+    text-align:center;
+    padding:15px 100px;
+    background:transparent;
+    &:hover, &:focus {
+        border-color:@link-color-hover;
+        cursor:pointer;
+    }
+}
+
+.number-line {
+    .clearfix;
+    border-top:1px solid #ccc;
+    width:100%;
+    display:block;
+    position:relative;
+    margin:200px auto 50px auto;
+    text-align:center;
+    padding:0;
+    .point {
+        position:relative;
+        display:block;
+        float:left;
+        font-size:0;
+        margin:0;
+        padding:0;
+        outline:0;
+        letter-spacing:0;
+        border:0;
+        text-align:center;
+        width:10%;
+        span {
+            font-size:16px;
+            color:#ccc;
+            position:relative;
+            &:before {
+                content: '|';
+                position:absolute;
+                top:-25px;
+                left:50%;
+                margin-left:-2px;
+            }
+        }
+    }
+    .prediction {
+        position:absolute;
+        display:block;
+        width:20px;
+        height:20px;
+        top:-75px;
+        .opacity(50);
+        .border-radius(100%);
+        margin:0;
+        padding:0;
+    }
+}
