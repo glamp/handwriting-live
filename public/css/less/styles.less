@@ -32,22 +32,61 @@ button {
     }
 }
 
+.scatter-plot {
+    position:relative;
+    margin:50px auto 0px auto;
+    .clearfix;
+    border-left:1px solid #ccc;
+    width:100%;
+    display:block;
+    padding:0;
+    height:400px;
+    max-width:800px;
+    .point {
+        position:relative;
+        display:block;
+        font-size:0;
+        margin:0;
+        padding:0;
+        outline:0;
+        letter-spacing:0;
+        border:0;
+        text-align:center;
+        height:10%;
+        span {   
+            display:block;
+            font-size:16px;
+            color:#ccc;
+             width:200px;
+            text-align:right;
+            position:absolute;
+            right:100%;
+            margin-left:20px;
+            &:after {
+                content: ' --';
+                margin-left:5px;
+            }
+        }
+    }
+}
+
 .number-line {
     .clearfix;
     border-top:1px solid #ccc;
     width:100%;
     display:block;
     position:relative;
-    margin:200px auto 50px auto;
+    margin:0px auto 50px auto;
     text-align:center;
     padding:0;
+    max-width:800px;
     .point {
         position:relative;
         display:block;
         float:left;
         font-size:0;
         margin:0;
-        padding:0;
+        padding:10px 0 0 0;
         outline:0;
         letter-spacing:0;
         border:0;
@@ -66,15 +105,18 @@ button {
             }
         }
     }
-    .prediction {
-        position:absolute;
-        display:block;
-        width:20px;
-        height:20px;
-        top:-75px;
-        .opacity(50);
-        .border-radius(100%);
-        margin:0;
-        padding:0;
-    }
+
+}
+
+.prediction {
+    position:absolute;
+    display:block;
+    width:0px;
+    height:0px;
+    bottom:0px;
+    .opacity(50);
+    .border-radius(100%);
+    margin:0;
+    padding:0;
+    .transition(all 150ms linear);
 }

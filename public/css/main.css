@@ -1049,15 +1049,62 @@ button:focus {
   border-color: #0a5d8f;
   cursor: pointer;
 }
+.scatter-plot {
+  position: relative;
+  margin: 50px auto 0px auto;
+  *zoom: 1;
+  border-left: 1px solid #ccc;
+  width: 100%;
+  display: block;
+  padding: 0;
+  height: 400px;
+  max-width: 800px;
+}
+.scatter-plot:before,
+.scatter-plot:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.scatter-plot:after {
+  clear: both;
+}
+.scatter-plot .point {
+  position: relative;
+  display: block;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  letter-spacing: 0;
+  border: 0;
+  text-align: center;
+  height: 10%;
+}
+.scatter-plot .point span {
+  display: block;
+  font-size: 16px;
+  color: #ccc;
+  width: 200px;
+  text-align: right;
+  position: absolute;
+  right: 100%;
+  margin-left: 20px;
+}
+.scatter-plot .point span:after {
+  content: ' --';
+  margin-left: 5px;
+}
 .number-line {
   *zoom: 1;
   border-top: 1px solid #ccc;
   width: 100%;
   display: block;
   position: relative;
-  margin: 200px auto 50px auto;
+  margin: 0px auto 50px auto;
   text-align: center;
   padding: 0;
+  max-width: 800px;
 }
 .number-line:before,
 .number-line:after {
@@ -1074,7 +1121,7 @@ button:focus {
   float: left;
   font-size: 0;
   margin: 0;
-  padding: 0;
+  padding: 10px 0 0 0;
   outline: 0;
   letter-spacing: 0;
   border: 0;
@@ -1093,12 +1140,12 @@ button:focus {
   left: 50%;
   margin-left: -2px;
 }
-.number-line .prediction {
+.prediction {
   position: absolute;
   display: block;
-  width: 20px;
-  height: 20px;
-  top: -75px;
+  width: 0px;
+  height: 0px;
+  bottom: 0px;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
   opacity: 0.5;
@@ -1110,6 +1157,11 @@ button:focus {
   background-clip: padding-box;
   margin: 0;
   padding: 0;
+  -webkit-transition: all 150ms linear;
+  -moz-transition: all 150ms linear;
+  -ms-transition: all 150ms linear;
+  -o-transition: all 150ms linear;
+  transition: all 150ms linear;
 }
 @-ms-viewport {
   width: device-width;

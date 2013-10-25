@@ -260,13 +260,16 @@ var offsets = [];
 var app = {
     resizingTimeout: null,
     init: function(){
+        this.max_size= 100;
+        this.height = $('.scatter-plot').height();
+
         this.clearCanvas();
         this.createOffsets();
         this.update_points_test();
-
+            
         $(".num").text(n);
 
-        $("#clear").on('click', function(e) {
+        $("#clear").on('click', function(e){
             app.clearCanvas();
         });
 
@@ -281,21 +284,22 @@ var app = {
     },
     createOffsets: function(){
         offsets = [];
-        $('.point span').each(function(){
-            offsets.push($(this).offset().left - $('.container').offset().left);
+        $('.number-line .point span').each(function(index){
+            $('#prediction-'+index).css({left: ($(this).offset().left - $('.number-line').offset().left), background: colorArray[index]});
         });
     },
     update_points_test: function(){
-        var probs = [1.345, 2.24356, 7, 3.4356, 9, 9.3245, 5.5, 4.321, 6.5431, 8.345];
-        $(".prediction").remove();
-        var numline_width = $('.point').width();
+        var probs = [0.01, 0.02, 0.03, 0.9, 0.1, 0.2, 0.07, 0.12, 0.67, 0.5];
         for(i=0; i<10; i++) {
-            var prob = probs[i],
-                prob_low = Math.floor(prob),
-                prob_percent = prob - prob_low,
-                offset_left = offsets[prob_low] + (prob_percent*numline_width) - 20;
-
-            $('.number-line').append('<div class="prediction" data-prob="'+prob+'" style="background:'+colorArray[i]+';left:'+offset_left+'px;margin-top:'+(i*5)+'px"></div>');
+            var size = probs[i]*app.max_size > 9 ? probs[i]*app.max_size : 10,
+                top_align = probs[i]*app.height;
+                $('#prediction-'+i).css({ 
+                    bottom: top_align,
+                    marginLeft: (-1)*(size/2),
+                    marginTop: (size/2),
+                    width: size, 
+                    height: size
+                });
         }
     }
 };
@@ -307,15 +311,18 @@ var app = {
 ws.onmessage = function(evt) {
     var d = JSON.parse(evt.data);
     $(".counter").text(parseInt($(".counter").text()) + 1);
-    $(".prediction").remove();
-    var numline_width = $('.point').width();
     for(i=0; i<10; i++) {
         var prob = d.probs["prob_" + i],
-            prob_low = Math.floor(prob),
-            prob_percent = prob - prob_low,
-            offset_left = offsets[prob_low]+(prob_percent*numline_width) -20;
+            size = prob*app.max_size > 9 ? prob*app.max_size : 10,
+            top_align = prob*app.height;
 
-        $('.number-line').append('<div class="prediction" data-prob="'+prob+'" style="background:'+colorArray[i]+';left:'+offset_left+'px;margin-top:'+(i*5)+'px"></div>');
+        $('#prediction-'+i).css({ 
+            bottom: top_align,
+            marginLeft: (-1)*size,
+            marginTop: size,
+            width: size, 
+            height: size            
+        });
     }
 };
 
