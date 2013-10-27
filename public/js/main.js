@@ -36,10 +36,11 @@ var app = {
     init: function(){
         this.max_size= 100;
         this.height = $('.scatter-plot').height();
-
+        this.test_probs = [0.01, 0.02, 0.03, 1, 0.1, 0.2, 0.07, 0.12, 0.67, 0.5];
         this.clearCanvas();
         this.createOffsets();
-        this.update_points_test();
+
+        this.update_points(app.test_probs);
             
         $(".num").text(n);
 
@@ -55,6 +56,7 @@ var app = {
     clearCanvas: function(){
         context.fillStyle = 'white';
         context.fillRect(0, 0, 500, 500);
+        app.update_points([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     },
     createOffsets: function(){
         offsets = [];
@@ -62,17 +64,16 @@ var app = {
             $('#prediction-'+index).css({left: ($(this).offset().left - $('.number-line').offset().left), background: colorArray[index]});
         });
     },
-    update_points_test: function(){
-        var probs = [0.01, 0.02, 0.03, 0.9, 0.1, 0.2, 0.07, 0.12, 0.67, 0.5];
+    update_points: function(probs){
         for(i=0; i<10; i++) {
             var size = probs[i]*app.max_size > 9 ? probs[i]*app.max_size : 10,
                 top_align = probs[i]*app.height;
                 $('#prediction-'+i).css({ 
-                    bottom: top_align,
-                    marginLeft: (-1)*(size/2),
-                    marginTop: (size/2),
+                    bottom: top_align-(size/2),
+                    marginLeft: (-1)*(size/4),
                     width: size, 
-                    height: size
+                    height: size,
+                    fontSize: size
                 });
         }
     }
@@ -91,11 +92,11 @@ ws.onmessage = function(evt) {
             top_align = prob*app.height;
 
         $('#prediction-'+i).css({ 
-            bottom: top_align,
-            marginLeft: (-1)*size,
-            marginTop: size,
+            bottom: top_align-(size/2),
+            marginLeft: (-1)*(size/4),
             width: size, 
-            height: size            
+            height: size,
+            fontSize: size
         });
     }
 };

@@ -6,6 +6,7 @@
     <title>Paint by Number 2.0</title>
 	<meta name="viewport" content="width=device-width">
 
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/css/yhat-digits-prediction.min.css">
 	<script src="/js/lib/modernizr-2.6.2.min.js"></script>
   </head>
@@ -13,52 +14,66 @@
     
 
     <div class="container">
-        <h2 class="number">Draw the number: <span class="num"></span></h2>
-        <p class="lead">Predictions Made: <span class="counter">0</span></p>
-        <div class="canvas-holder">
-            <canvas id="imageView" width="500" height="500"></canvas>
+        <header>
+            <h2>Welcome to Digit Recognizer</h2>
+            <p class="lead">Draw a number from 0-9 in the box below, view the prediction in the chart.</p>
+            <h5>Predictions Made: <span class="counter">0</span></h5>
+        </header>
+        <div class="row">
+            <div class="col-md-6"> 
+                <div class="canvas-holder">
+                    <canvas id="imageView" width="500" height="500"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <figure class="scatter-plot">
+                    <div class="point"><span>100%</span></div>
+                    <div class="point"><span>90%</span></div>
+                    <div class="point"><span>80%</span></div>
+                    <div class="point"><span>70%</span></div>
+                    <div class="point"><span>60%</span></div>
+                    <div class="point"><span>50%</span></div>
+                    <div class="point"><span>40%</span></div>
+                    <div class="point"><span>30%</span></div>
+                    <div class="point"><span>20%</span></div>
+                    <div class="point"><span>10%</span></div>
+                    <div id="prediction-0" class="prediction">0</div>
+                    <div id="prediction-1" class="prediction">1</div>
+                    <div id="prediction-2" class="prediction">2</div>
+                    <div id="prediction-3" class="prediction">3</div>
+                    <div id="prediction-4" class="prediction">4</div>
+                    <div id="prediction-5" class="prediction">5</div>
+                    <div id="prediction-6" class="prediction">6</div>
+                    <div id="prediction-7" class="prediction">7</div>
+                    <div id="prediction-8" class="prediction">8</div>
+                    <div id="prediction-9" class="prediction">9</div>
+                </figure>
+                <figure class="number-line">
+                    <div class="point point-0"><span>0</span></div>
+                    <div class="point point-1"><span>1</span></div>
+                    <div class="point point-2"><span>2</span></div>
+                    <div class="point point-3"><span>3</span></div>
+                    <div class="point point-4"><span>4</span></div>
+                    <div class="point point-5"><span>5</span></div>
+                    <div class="point point-6"><span>6</span></div>
+                    <div class="point point-7"><span>7</span></div>
+                    <div class="point point-8"><span>8</span></div>
+                    <div class="point point-9"><span>9</span></div>
+                </figure>
+            </div>
         </div>
-        <figure class="scatter-plot">
-            <div class="point"><span>100%</span></div>
-            <div class="point"><span>90%</span></div>
-            <div class="point"><span>80%</span></div>
-            <div class="point"><span>70%</span></div>
-            <div class="point"><span>60%</span></div>
-            <div class="point"><span>50%</span></div>
-            <div class="point"><span>40%</span></div>
-            <div class="point"><span>30%</span></div>
-            <div class="point"><span>20%</span></div>
-            <div class="point"><span>10%</span></div>
-            <div id="prediction-0" class="prediction"></div>
-            <div id="prediction-1" class="prediction"></div>
-            <div id="prediction-2" class="prediction"></div>
-            <div id="prediction-3" class="prediction"></div>
-            <div id="prediction-4" class="prediction"></div>
-            <div id="prediction-5" class="prediction"></div>
-            <div id="prediction-6" class="prediction"></div>
-            <div id="prediction-7" class="prediction"></div>
-            <div id="prediction-8" class="prediction"></div>
-            <div id="prediction-9" class="prediction"></div>
-        </figure>
-        <figure class="number-line">
-            <div class="point point-0"><span>0</span></div>
-            <div class="point point-1"><span>1</span></div>
-            <div class="point point-2"><span>2</span></div>
-            <div class="point point-3"><span>3</span></div>
-            <div class="point point-4"><span>4</span></div>
-            <div class="point point-5"><span>5</span></div>
-            <div class="point point-6"><span>6</span></div>
-            <div class="point point-7"><span>7</span></div>
-            <div class="point point-8"><span>8</span></div>
-            <div class="point point-9"><span>9</span></div>
-        </figure>
         <div class="button-holder">
             <button id="clear">Clear</button>
         </div>
+        <footer>
+            &copy;2013 &#375;hat
+            <div class="pull-right"><a href="https://twitter.com/share" class="twitter-share-button" data-via="yhathq">Tweet</a></div>
+        </footer>
     </div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="/js/lib/jquery-1.9.1.min.js"><\/script>')</script>
 	<script src="/js/yhat-digits-prediction.min.js"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   </body>
 </html>

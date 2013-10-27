@@ -25,7 +25,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: #313131;
@@ -753,7 +753,7 @@ p {
   margin: 0 0 12px;
 }
 .lead {
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   font-size: 18px;
   font-weight: 200;
   line-height: 1.4;
@@ -794,7 +794,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -858,6 +858,7 @@ h6 .small {
 h1,
 .h1 {
   font-size: 41px;
+  margin-bottom: 30px;
 }
 h2,
 .h2 {
@@ -874,6 +875,8 @@ h4,
 h5,
 .h5 {
   font-size: 16px;
+  text-transform: uppercase;
+  margin: 0;
 }
 h6,
 .h6 {
@@ -1003,14 +1006,29 @@ address {
   font-style: normal;
   line-height: 1.5;
 }
+header {
+  margin: 0 0 50px 0;
+  position: relative;
+  width: 100%;
+  display: block;
+}
+footer {
+  margin: 60px 0 10px 0;
+  position: relative;
+  width: 100%;
+  display: block;
+  text-align: left;
+  font-size: 80%;
+  line-height: 26px;
+}
 .canvas-holder {
   position: relative;
   *zoom: 1;
   display: block;
   height: 502px;
   width: 502px;
-  border: 1px solid #ededed;
-  margin: 10px auto;
+  border: 1px solid #ccc;
+  margin: 0px auto 0 auto;
 }
 .canvas-holder:before,
 .canvas-holder:after {
@@ -1051,13 +1069,13 @@ button:focus {
 }
 .scatter-plot {
   position: relative;
-  margin: 50px auto 0px auto;
+  margin: 0px auto 0px auto;
   *zoom: 1;
   border-left: 1px solid #ccc;
-  width: 100%;
+  width: 90%;
   display: block;
   padding: 0;
-  height: 400px;
+  height: 500px;
   max-width: 800px;
 }
 .scatter-plot:before,
@@ -1073,7 +1091,7 @@ button:focus {
   position: relative;
   display: block;
   font-size: 0;
-  margin: 0;
+  margin: 0 0 0 4px;
   padding: 0;
   outline: 0;
   letter-spacing: 0;
@@ -1085,6 +1103,7 @@ button:focus {
   display: block;
   font-size: 16px;
   color: #ccc;
+  font-weight: 100;
   width: 200px;
   text-align: right;
   position: absolute;
@@ -1098,7 +1117,7 @@ button:focus {
 .number-line {
   *zoom: 1;
   border-top: 1px solid #ccc;
-  width: 100%;
+  width: 90%;
   display: block;
   position: relative;
   margin: 0px auto 50px auto;
@@ -1131,6 +1150,7 @@ button:focus {
 .number-line .point span {
   font-size: 16px;
   color: #ccc;
+  font-weight: 100;
   position: relative;
 }
 .number-line .point span:before {
@@ -1157,6 +1177,11 @@ button:focus {
   background-clip: padding-box;
   margin: 0;
   padding: 0;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  font-size: 100%;
+  line-height: 100%;
   -webkit-transition: all 150ms linear;
   -moz-transition: all 150ms linear;
   -ms-transition: all 150ms linear;
